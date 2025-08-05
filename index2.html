@@ -1,0 +1,245 @@
+<div id="webcrumbs"> 
+        	<div   className="min-h-screen bg-gradient-to-br from-primary-50 to-blue-50 p-4 md:p-8">
+	  <header className="mb-8 text-center">
+	    <h1 className="text-3xl md:text-4xl font-bold mb-2">ApiAggregator</h1>
+	    <p className="text-gray-600">Get weather, news, and events for any city in one place</p>
+	  </header>
+	
+	  <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+	    <div className="p-6 md:p-8">
+	      <div className="flex flex-col md:flex-row gap-4 mb-8">
+	        <form method="POST"><input  
+	          type="text" 
+	          placeholder="Enter city name" 
+	          className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+	        />
+	        <button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+	          <span className="material-symbols-outlined">search</span>
+	          Search
+	        </button>
+            </form>
+	      </div>
+	
+	      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+	        {/* Weather Card */}
+	        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 shadow transition-all duration-300 hover:shadow-md hover:translate-y-[-5px]">
+	  <div  className="flex justify-between items-center mb-4">
+	    <h2 className="text-xl font-semibold">Weather</h2>
+	    <span className="material-symbols-outlined text-blue-500 text-3xl">landscape</span>
+	  </div>
+	  <div className="flex items-end gap-4 mb-4">
+	    <span className="text-4xl font-bold">{{weather.weather[0].description}}</span>
+	    <span className="text-gray-600">Partly Cloudy</span> <!--Based on the temperatur- add if statements possibly-->
+	  </div>
+	  <div  className="grid grid-cols-4 gap-2 pt-4 border-t border-blue-200 mb-5">
+	    <div className="text-center">
+	      <p className="text-gray-500 text-sm">Humidity</p> <!--based on info check again -->
+	      <p className="font-medium">65%</p> <!--check again-->
+	    </div>
+	    <div className="text-center">
+	      <p className="text-gray-500 text-sm">Wind</p> <!--again--> 
+	      <p className="font-medium">8 mph</p>
+	    </div>
+	    <div className="text-center">
+	      <p className="text-gray-500 text-sm">Feels</p>
+	      <p className="font-medium">75°F</p>
+	    </div>
+	    <div className="text-center">
+	      <p className="text-gray-500 text-sm">UV Index</p>
+	      <p className="font-medium">3</p>
+	    </div>
+	  </div>
+	  <div className="border-t border-blue-200 pt-4">
+	    <h3 className="text-sm font-medium mb-3 text-gray-700">5-Day Forecast</h3>
+	    <div className="flex justify-between">
+	      <div className="text-center">
+	        <p  className="text-xs text-gray-500 mb-1">Mon</p>
+	        <span className="material-symbols-outlined text-blue-500">sunny</span>
+	        <p className="text-sm font-medium mt-1">75°</p>
+	      </div>
+	      <div className="text-center">
+	        <p className="text-xs text-gray-500 mb-1">Tue</p>
+	        <span className="material-symbols-outlined text-blue-500">landscape</span>
+	        <p className="text-sm font-medium mt-1">73°</p>
+	      </div>
+	      <div className="text-center">
+	        <p className="text-xs text-gray-500 mb-1">Wed</p>
+	        <span className="material-symbols-outlined text-blue-500">landscape</span>
+	        <p className="text-sm font-medium mt-1">68°</p>
+	      </div>
+	      <div  className="text-center">
+	        <p className="text-xs text-gray-500 mb-1">Thu</p>
+	        <span className="material-symbols-outlined text-blue-500">landscape</span>
+	        <p className="text-sm font-medium mt-1">64°</p>
+	      </div>
+	      <div className="text-center">
+	        <p className="text-xs text-gray-500 mb-1">Fri</p>
+	        <span className="material-symbols-outlined text-blue-500">landscape</span>
+	        <p className="text-sm font-medium mt-1">70°</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	        {/* Local News Card */}
+	        <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-6 shadow transition-all duration-300 hover:shadow-md hover:translate-y-[-5px]">
+	  <div className="flex justify-between items-center mb-4">
+	    <h2 className="text-xl font-semibold">Local News</h2>
+	    <span className="material-symbols-outlined text-amber-500 text-3xl">feed</span>
+	  </div>
+	  
+	  <div className="mb-4 flex flex-wrap gap-2">
+	    <button className="px-3 py-1 text-xs rounded-full bg-amber-200 hover:bg-amber-300 transition-all border border-amber-300 font-medium flex items-center gap-1">
+	      <span className="material-symbols-outlined text-[14px]">check_circle</span>
+	      All Sources
+	    </button>
+	    <button className="px-3 py-1 text-xs rounded-full bg-white hover:bg-amber-100 transition-all border border-amber-200 font-medium flex items-center gap-1">
+	      <span className="material-symbols-outlined text-[14px]">public</span>
+	      Local
+	    </button>
+	    <button className="px-3 py-1 text-xs rounded-full bg-white hover:bg-amber-100 transition-all border border-amber-200 font-medium flex items-center gap-1">
+	      <span className="material-symbols-outlined text-[14px]">newspaper</span>
+	      National
+	    </button>
+	    <details className="relative">
+	      <summary className="px-3 py-1 text-xs rounded-full bg-white hover:bg-amber-100 transition-all border border-amber-200 font-medium flex items-center gap-1 cursor-pointer list-none">
+	        <span className="material-symbols-outlined text-[14px]">tune</span>
+	        More
+	      </summary>
+	      <div className="absolute right-0 mt-1 bg-white shadow-md rounded-lg p-2 w-40 z-10 border border-amber-200">
+	        <div className="py-1 px-2 text-xs hover:bg-amber-50 rounded cursor-pointer flex items-center gap-1">
+	          <span className="material-symbols-outlined text-[14px]">campaign</span>
+	          Breaking News
+	        </div>
+	        <div className="py-1 px-2 text-xs hover:bg-amber-50 rounded cursor-pointer flex items-center gap-1">
+	          <span className="material-symbols-outlined text-[14px]">sports</span>
+	          Sports
+	        </div>
+	        <div className="py-1 px-2 text-xs hover:bg-amber-50 rounded cursor-pointer flex items-center gap-1">
+	          <span className="material-symbols-outlined text-[14px]">theater_comedy</span>
+	          Entertainment
+	        </div>
+	      </div>
+	    </details>
+	  </div>
+	  
+	  <div className="space-y-4">
+	    <div className="pb-3 border-b border-amber-200">
+	      <div className="flex justify-between items-start mb-1">
+	        <h3 className="font-medium hover:text-primary-700 cursor-pointer transition-colors">New Community Center Opens Downtown</h3>
+	        <span className="bg-amber-200 text-xs px-1.5 py-0.5 rounded text-amber-800 font-medium">Local</span>
+	      </div>
+	      <p className="text-sm text-gray-600 line-clamp-2">The long-awaited community center has finally opened its doors to the public after three years of construction...</p>
+	      <div className="flex justify-between items-center mt-1">
+	        <p className="text-xs text-gray-500">2 hours ago</p>
+	        <p className="text-xs text-gray-500">City Tribune</p>
+	      </div>
+	    </div>
+	    <div className="pb-3 border-b border-amber-200">
+	      <div className="flex justify-between items-start mb-1">
+	        <h3 className="font-medium hover:text-primary-700 cursor-pointer transition-colors">Local Restaurant Wins National Award</h3>
+	        <span className="bg-amber-200 text-xs px-1.5 py-0.5 rounded text-amber-800 font-medium">Local</span>
+	      </div>
+	      <p className="text-sm text-gray-600 line-clamp-2">A beloved local eatery has been recognized with a prestigious culinary award for their innovative farm-to-table approach...</p>
+	      <div className="flex justify-between items-center mt-1">
+	        <p className="text-xs text-gray-500">5 hours ago</p>
+	        <p className="text-xs text-gray-500">Food Network</p>
+	      </div>
+	    </div>
+	    <div>
+	      <div className="flex justify-between items-start mb-1">
+	        <h3 className="font-medium hover:text-primary-700 cursor-pointer transition-colors">City Council Approves New Park Development</h3>
+	        <span className="bg-amber-200 text-xs px-1.5 py-0.5 rounded text-amber-800 font-medium">Local</span>
+	      </div>
+	      <p className="text-sm text-gray-600 line-clamp-2">In a unanimous vote, the city council has approved funding for a new recreational park in the eastern district...</p>
+	      <div className="flex justify-between items-center mt-1">
+	        <p className="text-xs text-gray-500">Yesterday</p>
+	        <p className="text-xs text-gray-500">City Tribune</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	        {/* Events Card */}
+	        <div  className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 shadow transition-all duration-300 hover:shadow-md hover:translate-y-[-5px]">
+	          <div  className="flex justify-between items-center mb-4">
+	            <h2 className="text-xl font-semibold">Upcoming Events</h2>
+	            <span className="material-symbols-outlined text-purple-500 text-3xl">event</span>
+	          </div>
+	          <div className="space-y-4">
+	            <div className="flex gap-3 items-start pb-3 border-b border-purple-200">
+	              <div   className="bg-white p-2 rounded-lg text-center min-w-[50px] shadow-sm">
+	                <p className="text-xs font-medium text-gray-500">MAY</p>
+	                <p  className="text-lg font-bold">15</p>
+	              </div>
+	              <div>
+	                <h3 className="font-medium hover:text-primary-700 cursor-pointer transition-colors">Farmers Market</h3>
+	                <p className="text-sm text-gray-600">Downtown Square, 9AM - 2PM</p>
+	                <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+	                  <span className="material-symbols-outlined text-[14px]">group</span>
+	                  <span>120+ attending</span>
+	                </div>
+	              </div>
+	            </div>
+	            <div className="flex gap-3 items-start pb-3 border-b border-purple-200">
+	              <div className="bg-white p-2 rounded-lg text-center min-w-[50px] shadow-sm">
+	                <p className="text-xs font-medium text-gray-500">MAY</p>
+	                <p className="text-lg font-bold">18</p>
+	              </div>
+	              <div>
+	                <h3 className="font-medium hover:text-primary-700 cursor-pointer transition-colors">Jazz in the Park</h3>
+	                <p className="text-sm text-gray-600">Riverside Park, 6PM - 9PM</p>
+	                <div  className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+	                  <span  className="material-symbols-outlined text-[14px]">group</span>
+	                  <span >85+ attending</span>
+	                </div>
+	              </div>
+	            </div>
+	            <div className="flex gap-3 items-start">
+	              <div className="bg-white p-2 rounded-lg text-center min-w-[50px] shadow-sm">
+	                <p className="text-xs font-medium text-gray-500">MAY</p>
+	                <p  className="text-lg font-bold">22</p>
+	              </div>
+	              <div>
+	                <h3  className="font-medium hover:text-primary-700 cursor-pointer transition-colors">Food Truck Festival</h3>
+	                <p className="text-sm text-gray-600">City Hall Plaza, 11AM - 8PM</p>
+	                <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+	                  <span className="material-symbols-outlined text-[14px]">group</span>
+	                  <span>250+ attending</span>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	          {/* Next: "Add event category filter tabs" */}
+	        </div>
+	      </div>
+	
+	      <div className="mt-8 pt-6 border-t border-gray-200">
+	        <div className="flex flex-wrap gap-4 justify-between items-center">
+	          <div>
+	            <h3 className="text-lg font-medium mb-1">San Francisco, CA</h3>
+	            <p className="text-sm text-gray-600">Last updated: May 12, 2023 at 14:30</p>
+	          </div>
+	          <div className="flex gap-2">
+	            <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+	              <span className="material-symbols-outlined">refresh</span>
+	            </button>
+	            <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+	              <span className="material-symbols-outlined">share</span>
+	            </button>
+	            <button className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+	              <span className="material-symbols-outlined">bookmark</span>
+	            </button>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	
+	  <footer className="mt-8 text-center text-sm text-gray-500">
+	    <p>Data sourced from Weather API, News API, and Events API</p>
+	    <p className="mt-1">© 2023 ApiAggregator. All rights reserved.</p>
+	  </footer>
+	  {/* Next: "Add a settings modal for customizing data sources" */}
+	</div> 
+        </div>
