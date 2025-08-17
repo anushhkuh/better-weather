@@ -1,0 +1,74 @@
+<form method="POST">
+  <input name="city" … value="{{ city }}" />
+  <button>Search</button>
+</form>
+
+<!-- Weather Card -->
+<h2>Weather</h2>
+<p class="text-4xl font-bold">{{ weather.temp }}°F</p>
+<p>{{ weather.description }}</p>
+
+<div class="grid grid-cols-4 gap-2">
+  <div>
+    <p>Humidity</p>
+    <p>{{ weather.humidity }}%</p>
+  </div>
+  <div>
+    <p>Wind</p>
+    <p>{{ weather.wind_speed }} mph</p>
+  </div>
+  <div>
+    <p>Feels</p>
+    <p>{{ weather.feels_like }}°F</p>
+  </div>
+  <div>
+    <p>UV Index</p>
+    <p>{{ weather.uv_index }}</p>
+  </div>
+</div>
+
+<div>
+  <h3>5-Day Forecast</h3>
+  <div class="flex justify-between">
+    {% for day in forecast %}
+      <div class="text-center">
+        <p>{{ day.day }}</p>
+        <span class="material-symbols-outlined">{{ day.icon }}</span>
+        <p>{{ day.temp }}°</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Local News Card -->
+<h2>Local News</h2>
+<div>
+  {% for art in articles %}
+    <div class="mb-4">
+      <a href="{{ art.url }}" class="font-medium hover:text-blue-700">{{ art.title }}</a>
+      <p class="text-xs text-gray-500">{{ art.published }} • {{ art.source }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Events Card -->
+<h2>Upcoming Events</h2>
+<div>
+  {% for ev in events %}
+    <div class="flex gap-3 mb-4">
+      <div class="text-center">
+        <p class="text-xs">{{ ev.date | date("MMM") }}</p>
+        <p class="text-lg font-bold">{{ ev.date | date("DD") }}</p>
+      </div>
+      <div>
+        <h3>{{ ev.name }}</h3>
+        <p>{{ ev.venue }}</p>
+        <p class="text-xs">{{ ev.attendees }} attending</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<footer>
+  <p>Data sourced from Weather, News & Events APIs</p>
+</footer>
