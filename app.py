@@ -15,7 +15,6 @@ EVENTSAPIKEYS=os.getenv("TICKETMASTER_API_KEY")
 @app.route("/", methods=["GET", "POST"])
 
 def home():
-    
 
     city = request.form.get("city", "san francisco")
 
@@ -35,10 +34,6 @@ def home():
     "https://api.openweathermap.org/data/2.5/forecast", params={"q":city ,"appid":OPENWEATHER, "units":"metric"}
     ).json()
 
-    """for key in weather_response:
-        print(key, " : ", weather_response[key])
-    """
-
 
     forecast =[]
 
@@ -49,7 +44,6 @@ def home():
             "icon": item["weather"][0]["main"].lower(),
             "temp": round(item["main"]["temp"])
         })
-
    
 
     news_response = requests.get("https://newsapi.org/v2/top-headlines", params={"country":"us","apiKey":NEWSAPIKEYS, "pageSize":5}).json()
@@ -58,12 +52,14 @@ def home():
     for articles in news_response["articles"]:
         news.append(articles.get('title'))
     
-
-    
    
-    event_response = requests.get("https://app.ticketmaster.com/discovery/v2/events.json", params={"apikey":EVENTSAPIKEYS, "city":city, "size":1 }).json()
-    print(event_response)
+    event_json = requests.get("https://app.ticketmaster.com/discovery/v2/events.json", params={"apikey":EVENTSAPIKEYS, "city":city, "size":1 }).json()['_embedded']["events"]
 
+    weather_html = f"<h1>weather for {city}</h1> <p>news :{news}</p> <p>weather: {weather}</p><p>events:"
+
+    for event in event_json:
+        name = event["name"]
+        url = event["url"]
+        weather_html += f" {name} and {url} " 
     
-    
-    return f"<h1>weather for {city}</h1> <p>news :{news}</p> <p>weather: {weather}</p><p>events:{event_response}</p>"
+    return render_template("index2.html")
